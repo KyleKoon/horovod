@@ -90,6 +90,9 @@ global_process_set.process_set_id = 0
 
 
 def _setup(basics):
+    import traceback
+    print(f"[hvd DEBUG] _setup - basics: {id(basics)} / {basics} - tracekstack: \n{traceback.format_stack()}\n\n")
+
     # type: (Optional[HorovodBasics]) -> None
     """" Horovod internal, to be called after the Horovod C++ module has been loaded. """
     global _basics
@@ -97,6 +100,7 @@ def _setup(basics):
 
 
 def _init_process_sets(process_set_list: List[ProcessSet]):
+    print(f"[hvd DEBUG] in _init_process_sets in process_sets.py")
     """ Update process_set_id and ranks entries of all passed process set objects and invalidate any clones.
 
     Horovod internal, to be called from hvd.init(). """

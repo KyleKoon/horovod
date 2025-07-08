@@ -33,6 +33,8 @@ def create_distributed_optimizer(keras, optimizer, name, device_dense, device_sp
                                  average_aggregated_gradients=False,
                                  groups=None, process_set=hvd.global_process_set,
                                  scale_local_gradients=True):
+    print(f"[hvd DEBUG] hvd._keras.create_distributed_optimizer - process_set: {process_set}")
+
     class _DistributedOptimizer(*optimizer.__class__.__bases__):
         _HAS_AGGREGATE_GRAD = True
 

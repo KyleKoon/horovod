@@ -41,6 +41,7 @@ class _DistributedOptimizer(torch.optim.Optimizer):
                  sparse_as_dense=False,
                  process_set=global_process_set):
         super(self.__class__, self).__init__(params)
+        print(f"[hvd DEBUG] hvd.torch.optimizer._DistributedOptimizer - process_set: {process_set}")
         self._compression = compression
 
         if named_parameters is not None:
@@ -521,6 +522,7 @@ def DistributedOptimizer(optimizer, named_parameters=None,
                          num_groups=0, groups=None,
                          sparse_as_dense=False,
                          process_set=global_process_set):
+    print(f"[hvd DEBUG] hvd.torch.optimizer.DistributedOptimizer - process_set: {process_set}")
     """
     An optimizer that wraps another torch.optim.Optimizer, using an allreduce to
     combine gradient values before applying gradients to model weights.

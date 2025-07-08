@@ -54,6 +54,7 @@ except Exception as e:
 else:
     check_installed_version('tensorflow', tf.__version__)
 
+print(f"[hvd DEBUG] creating _HorovodBasics object in tensorflow/mpi_ops.py")
 _basics = _HorovodBasics(__file__, 'mpi_lib')
 
 # import basic methods
@@ -78,6 +79,7 @@ ccl_built = _basics.ccl_built
 cuda_built = _basics.cuda_built
 rocm_built = _basics.rocm_built
 
+print(f"[hvd DEBUG] importing reduction op values in tensorflow/mpi_ops.py")
 # import reduction op values
 Average = _basics.Average
 Sum = _basics.Sum
@@ -87,7 +89,9 @@ Max = _basics.Max
 Product = _basics.Product
 
 def init(*args, **kwargs):
+    print(f"[hvd DEBUG] calling _basics.init in tensorflow/mpi_ops.py init function")
     _basics.init(*args, **kwargs)
+    print(f"[hvd DEBUG] calling _setup_process_sets in tensorflow/mpi_ops.py init function")
     # Call set up again to make sure the basics is in sync
     _setup_process_sets(_basics)
 
@@ -97,6 +101,7 @@ handle_average_backwards_compatibility = get_average_backwards_compatibility_fun
 
 check_num_rank_power_of_2 = num_rank_is_power_2
 
+print(f"[hvd DEBUG] calling _setup_process_sets in tensorflow/mpi_ops.py")
 _setup_process_sets(_basics)
 
 

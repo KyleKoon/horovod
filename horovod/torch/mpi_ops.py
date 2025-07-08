@@ -39,6 +39,7 @@ else:
 
 _NULL = ""
 
+print(f"[hvd DEBUG] creating _HorovodBasics object in torch/mpi_ops.py")
 _basics = _HorovodBasics(__file__, 'mpi_lib_v2')
 
 # import basic methods
@@ -67,12 +68,14 @@ def shutdown(*args, **kwargs):
     return _basics.shutdown(*args, **kwargs)
 
 def init(*args, **kwargs):
-    global _handle_map
-    _handle_map = {}
-    _basics.init(*args, **kwargs)
+    print(f"[hvd DEBUG] NOT calling _basics.init nor _setup_process_sets in torch/mpi_ops.py")
+    # global _handle_map
+    # _handle_map = {}
+    # _basics.init(*args, **kwargs)
     # Call set up again to make sure the basics is in sync
-    _setup_process_sets(_basics)
+    # _setup_process_sets(_basics)
 
+print(f"[hvd DEBUG] importing reduction op values in torch/mpi_ops.py")
 # import reduction op values
 Average = _basics.Average
 Sum = _basics.Sum
@@ -85,7 +88,8 @@ is_homogeneous = _basics.is_homogeneous
 
 handle_average_backwards_compatibility = get_average_backwards_compatibility_fun(_basics)
 
-_setup_process_sets(_basics)
+print(f"[hvd DEBUG] NOT calling _setup_process_sets in torch/mpi_ops.py")
+# _setup_process_sets(_basics)
 
 
 # Schema: handle -> input, output
