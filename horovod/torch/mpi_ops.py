@@ -39,29 +39,30 @@ else:
 
 _NULL = ""
 
-print(f"[hvd DEBUG] creating _HorovodBasics object in torch/mpi_ops.py")
-_basics = _HorovodBasics(__file__, 'mpi_lib_v2')
+print(f"[hvd DEBUG] NOT creating _HorovodBasics object in torch/mpi_ops.py, instead setting _basics to None")
+# _basics = _HorovodBasics(__file__, 'mpi_lib_v2')
+_basics = None
 
 # import basic methods
-is_initialized = _basics.is_initialized
-start_timeline = _basics.start_timeline
-stop_timeline = _basics.stop_timeline
-size = _basics.size
-local_size = _basics.local_size
-cross_size = _basics.cross_size
-rank = _basics.rank
-local_rank = _basics.local_rank
-cross_rank = _basics.cross_rank
-mpi_threads_supported = _basics.mpi_threads_supported
-mpi_enabled = _basics.mpi_enabled
-mpi_built = _basics.mpi_built
-gloo_enabled = _basics.gloo_enabled
-gloo_built = _basics.gloo_built
-nccl_built = _basics.nccl_built
-ddl_built = _basics.ddl_built
-ccl_built = _basics.ccl_built
-cuda_built = _basics.cuda_built
-rocm_built = _basics.rocm_built
+# is_initialized = _basics.is_initialized
+# start_timeline = _basics.start_timeline
+# stop_timeline = _basics.stop_timeline
+# size = _basics.size
+# local_size = _basics.local_size
+# cross_size = _basics.cross_size
+# rank = _basics.rank
+# local_rank = _basics.local_rank
+# cross_rank = _basics.cross_rank
+# mpi_threads_supported = _basics.mpi_threads_supported
+# mpi_enabled = _basics.mpi_enabled
+# mpi_built = _basics.mpi_built
+# gloo_enabled = _basics.gloo_enabled
+# gloo_built = _basics.gloo_built
+# nccl_built = _basics.nccl_built
+# ddl_built = _basics.ddl_built
+# ccl_built = _basics.ccl_built
+# cuda_built = _basics.cuda_built
+# rocm_built = _basics.rocm_built
 
 def shutdown(*args, **kwargs):
     mpi_lib.horovod_torch_reset()
@@ -75,18 +76,18 @@ def init(*args, **kwargs):
     # Call set up again to make sure the basics is in sync
     # _setup_process_sets(_basics)
 
-print(f"[hvd DEBUG] importing reduction op values in torch/mpi_ops.py")
+print(f"[hvd DEBUG] NOT importing reduction op values in torch/mpi_ops.py")
 # import reduction op values
-Average = _basics.Average
-Sum = _basics.Sum
-Adasum = _basics.Adasum
-Min = _basics.Min
-Max = _basics.Max
-Product = _basics.Product
+# Average = _basics.Average
+# Sum = _basics.Sum
+# Adasum = _basics.Adasum
+# Min = _basics.Min
+# Max = _basics.Max
+# Product = _basics.Product
 
-is_homogeneous = _basics.is_homogeneous
+# is_homogeneous = _basics.is_homogeneous
 
-handle_average_backwards_compatibility = get_average_backwards_compatibility_fun(_basics)
+# handle_average_backwards_compatibility = get_average_backwards_compatibility_fun(_basics)
 
 print(f"[hvd DEBUG] NOT calling _setup_process_sets in torch/mpi_ops.py")
 # _setup_process_sets(_basics)
