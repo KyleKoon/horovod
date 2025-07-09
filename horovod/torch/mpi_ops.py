@@ -64,6 +64,27 @@ _basics = None
 # cuda_built = _basics.cuda_built
 # rocm_built = _basics.rocm_built
 
+print(f"[hvd DEBUG] Setting basic methods to None in torch/mpi_ops.py")
+is_initialized = None
+start_timeline = None
+stop_timeline = None
+size = None
+local_size = None
+cross_size = None
+rank = None
+local_rank = None
+cross_rank = None
+mpi_threads_supported = None
+mpi_enabled = None
+mpi_built = None
+gloo_enabled = None
+gloo_built = None
+nccl_built = None
+ddl_built = None
+ccl_built = None
+cuda_built = None
+rocm_built = None
+
 def shutdown(*args, **kwargs):
     mpi_lib.horovod_torch_reset()
     return _basics.shutdown(*args, **kwargs)
@@ -76,7 +97,7 @@ def init(*args, **kwargs):
     # Call set up again to make sure the basics is in sync
     # _setup_process_sets(_basics)
 
-print(f"[hvd DEBUG] NOT importing reduction op values in torch/mpi_ops.py")
+print(f"[hvd DEBUG] Setting reduction op values to None in torch/mpi_ops.py")
 # import reduction op values
 # Average = _basics.Average
 # Sum = _basics.Sum
@@ -84,8 +105,15 @@ print(f"[hvd DEBUG] NOT importing reduction op values in torch/mpi_ops.py")
 # Min = _basics.Min
 # Max = _basics.Max
 # Product = _basics.Product
+Average = None
+Sum = None
+Adasum = None
+Min = None
+Max = None
+Product = None
 
 # is_homogeneous = _basics.is_homogeneous
+is_homogeneous = None
 
 # handle_average_backwards_compatibility = get_average_backwards_compatibility_fun(_basics)
 
